@@ -1,0 +1,2114 @@
+/* ------------------------------------------------
+   1. RESET STRICT
+   ------------------------------------------------ */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  overflow-y: scroll; /* force la scrollbar toujours visible */
+}
+
+/* ------------------------------------------------
+      2. BASE / GLOBAL
+      ------------------------------------------------ */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: #1a1a1a; /* Fond sombre comme sur l'image */
+  color: #fff;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Les images ne débordent pas */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Un conteneur réutilisable pour centrer et limiter la largeur */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ------------------------------------------------
+      3. HEADER / NAV
+      ------------------------------------------------ */
+
+/* Header optionnel, si tu as un background spécifique */
+.header {
+  width: 100%;
+  background-color: #1a1a1a; /* ou image de fond */
+  margin: 0;
+  padding: 0;
+  z-index: 1000; /* Z-index élevé pour le header */
+}
+
+/* Barre de navigation
+      <nav class="navbar container">
+   */
+.navbar {
+  width: 100%;
+  height: 80px; /* hauteur du header */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  position: relative; /* Ajout de position relative */
+}
+
+/* Logo / titre du site */
+.navbar-logo a {
+  font-size: 1.8rem;
+  color: #ff0000;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Icône burger (mobile) */
+.burger {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  cursor: pointer;
+}
+
+.burger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+}
+
+/* Menu (mobile-first : caché) */
+.navbar-menu {
+  list-style: none;
+  display: none; /* caché sur mobile */
+  background: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-menu li a {
+  color: #ff0000;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+.navbar-menu li a:hover {
+  color: #fff;
+}
+
+/* Style pour l'onglet actif de la navbar */
+.navbar-menu li.active a {
+  color: #ff0000; /* Texte blanc */
+  background-color: #ffffff; /* Fond rouge pour marquer l'onglet actif */
+  border-radius: 4px; /* Optionnel : arrondir les coins */
+  padding: 0.5rem 1rem; /* Assurer une bonne taille */
+}
+
+/* Quand on clique sur burger => .navbar-menu.active => visible */
+.navbar-menu.active {
+  display: block;
+}
+
+/* Dropdown */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #000;
+  padding: 10px;
+  list-style: none;
+  min-width: 180px;
+  z-index: 999;
+}
+
+.dropdown-content li {
+  margin: 5px 0;
+}
+
+.dropdown-content li a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 5px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content li a:hover {
+  background-color: #444;
+}
+
+/* -- MEDIA QUERIES NAV -- */
+@media (min-width: 768px) {
+  /* Sur desktop : menu horizontal, plus de burger */
+  .navbar-menu {
+    display: flex;
+    gap: 1rem;
+    background: none;
+  }
+
+  .navbar-menu li a {
+    background: none;
+    color: #ff0000;
+    padding: 0.5rem;
+  }
+
+  .burger {
+    display: none;
+  }
+}
+
+/* ------------------------------------------------
+      4. MAIN / CONTENT
+      ------------------------------------------------ */
+
+/* Pour « pousser » le footer en bas si on veut 
+      On a déjà flex:1 sur body, mais si tu veux un main distinct : */
+main {
+  flex: 1; /* occupe l'espace restant, le footer ira en bas */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+}
+
+/* SECTION DEUX COLONNES 
+      <section class="two-columns container">
+   */
+.two-columns {
+  width: 100%;
+  display: flex;
+  align-items: stretch; /* stretch ou center, selon l'effet voulu */
+  justify-content: space-between;
+  margin: 2rem auto;
+  max-width: 1200px;
+  background: #fff; /* fond blanc */
+  min-height: 400px; /* hauteur arbitraire */
+}
+
+.col-left {
+  flex: 1;
+  text-align: center;
+  padding: 1rem;
+}
+
+.col-right {
+  flex: 1;
+  background-color: #d60000;
+  color: #fff;
+  padding: 2rem;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.col-right h2 {
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.keywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+}
+
+.keywords span {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.btn {
+  margin-top: 1rem;
+  align-self: center;
+}
+
+/* CONTACT-BANNER 
+      <section class="contact-banner container">
+   */
+.contact-banner {
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+.contact-block {
+  flex: 1;
+  margin: 0;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+}
+
+.grey-block {
+  background-color: #efefef !important;
+  color: #333 !important;
+}
+
+.red-block {
+  background-color: #d60000 !important;
+  color: #fff !important;
+}
+
+.blue-block {
+  background-color: #062864 !important;
+  color: #fff !important;
+}
+
+.contact-block a {
+  color: inherit !important;
+  text-decoration: none;
+}
+
+.contact-block a:hover {
+  text-decoration: underline;
+}
+
+/* Styles spécifiques pour les blocs de contact - toujours avec leurs couleurs d'origine */
+.contact-banner .contact-block.grey-block {
+  background-color: #efefef !important;
+  color: #333 !important;
+}
+
+.contact-banner .contact-block.grey-block a {
+  color: #333 !important;
+}
+
+.contact-banner .contact-block.red-block {
+  background-color: #d60000 !important;
+  color: #fff !important;
+}
+
+.contact-banner .contact-block.red-block a {
+  color: #fff !important;
+}
+
+.contact-banner .contact-block.blue-block {
+  background-color: #062864 !important;
+  color: #fff !important;
+}
+
+.contact-banner .contact-block.blue-block a {
+  color: #fff !important;
+}
+
+/* Assurer que les conteneurs dans la bannière de contact ne sont pas affectés par le mode sombre */
+.contact-banner .container,
+.contact-banner .contact-block {
+  background-color: inherit !important;
+}
+
+/* Forcer l'affichage des blocs de contact */
+.contact-banner {
+  display: flex !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.contact-block {
+  display: flex !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* ------------------------------------------------
+      5. BOUTON .btn
+      ------------------------------------------------ */
+.btn {
+  display: inline-block;
+  padding: 0.8rem 1.2rem;
+  background-color: #fff;
+  color: #d60000;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #d60000;
+  color: #fff;
+}
+
+/* ------------------------------------------------
+      6. FOOTER
+      ------------------------------------------------ */
+
+/* Footer occupant la largeur, collé en bas si contenu court */
+.footer {
+  width: 100%;
+  background-color: #1a1a1a !important; /* Même couleur que la barre de navigation */
+  color: #cccccc !important;
+  margin-top: auto; /* Push footer to bottom */
+  padding: 0;
+}
+
+/* 
+      <div class="footer-container container">
+      => centrage horizontal & max-width
+   */
+.footer-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  background-color: #1a1a1a !important; /* Même couleur que le footer */
+}
+
+.footer-contact,
+.footer-social,
+.footer-address {
+  margin: 0.5rem 0;
+}
+
+.footer-contact a {
+  color: #fff !important;
+  text-decoration: none;
+  margin: 0 5px;
+  transition: color 0.3s ease;
+}
+
+.footer-contact a:hover {
+  color: #ff0000 !important;
+}
+
+.footer-social {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer-social a {
+  color: #fff !important;
+  font-size: 1.2rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-social a:hover {
+  color: #ff0000 !important;
+}
+
+.footer-address {
+  font-size: 0.9rem;
+  color: #ccc !important;
+}
+
+/* Styles pour le footer - toujours sombre */
+.footer {
+  background-color: #1a1a1a !important; /* Même couleur que la barre de navigation */
+  color: #cccccc !important;
+}
+
+.footer a {
+  color: #ffffff !important;
+}
+
+.footer a:hover {
+  color: #ff0000 !important; /* Rouge au survol */
+}
+
+/* Styles pour les conteneurs dans le footer */
+.footer .container,
+.contact-banner .contact-block {
+  background-color: inherit !important; /* Hérite de la couleur du parent */
+}
+
+/* Styles spécifiques pour les blocs de contact */
+.grey-block {
+  background-color: #efefef !important;
+  color: #333 !important;
+}
+
+.red-block {
+  background-color: #d60000 !important;
+  color: #fff !important;
+}
+
+.blue-block {
+  background-color: #062864 !important;
+  color: #fff !important;
+}
+
+/* ------------------------------------------------
+      7. DPS
+      ------------------------------------------------ */
+
+/* DPS Page Styles */
+.dps-page {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  /* Gradient + Image */
+  background: linear-gradient(135deg, rgb(255, 233, 250) 0%, #8b0000 100%),
+    url("../../assets/images/dps_wallpaper.avif") no-repeat center center /
+      cover;
+  background-blend-mode: multiply; /* ou overlay, screen, etc. */
+}
+
+.dps-page::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.05) 0px,
+    rgba(255, 255, 255, 0.05) 2px,
+    transparent 2px,
+    transparent 12px
+  );
+  pointer-events: none;
+}
+
+.dps-hero {
+  padding: 4rem 0 2rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  background-color: transparent !important;
+}
+
+.dps-title {
+  font-size: 3.5rem;
+  color: #000000; /* Noir en mode jour */
+  margin-bottom: 2rem;
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.3);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+body.dark-mode .dps-title {
+  color: #ffffff; /* Blanc en mode nuit */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.dps-info {
+  margin-bottom: 3rem;
+  background-color: transparent !important;
+}
+
+.dps-text {
+  color: #000000; /* Noir en mode jour */
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+body.dark-mode .dps-text {
+  color: #ffffff; /* Blanc en mode nuit */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.dps-contact {
+  background-color: rgba(100, 0, 0, 0.9);
+  padding: 2rem;
+  border-radius: 8px;
+  display: inline-block;
+  margin: 0 auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dps-email,
+.dps-phone a {
+  color: #ffffff; /* Toujours blanc car sur fond rouge foncé */
+  text-decoration: none;
+  font-size: 1.25rem;
+  transition: color 0.3s ease;
+}
+
+.dps-email:hover,
+.dps-phone a:hover {
+  color: #ffcccc;
+}
+
+.dps-phone {
+  color: #ffffff; /* Toujours blanc car sur fond rouge foncé */
+  margin-top: 1rem;
+  font-size: 1.25rem;
+}
+
+.dps-vehicle {
+  padding: 2rem 0;
+  text-align: center;
+  background-color: transparent !important;
+}
+
+.dps-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.dps-vehicle img {
+  display: inline-block; /* s'assure que l'image est traitée comme un élément inline */
+}
+
+.dps-image:hover {
+  transform: scale(1.02);
+}
+
+/* Rendre les conteneurs transparents sur la page DPS */
+.dps-page .container,
+.dps-page .card,
+.dps-page .two-columns,
+.dps-page .col-left,
+.dps-page .col-right {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Conserver le style pour le bloc de contact */
+.dps-page .dps-contact {
+  background-color: rgba(100, 0, 0, 0.9) !important;
+  border: 2px solid #8b0000 !important;
+}
+
+/* Animation d'entrée */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dps-title,
+.dps-info,
+.dps-contact {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.dps-info {
+  animation-delay: 0.2s;
+}
+
+.dps-contact {
+  animation-delay: 0.4s;
+}
+
+/* ------------------------------------------------
+      8. SOCIAL MEDIA
+      ------------------------------------------------ */
+
+.follow-us {
+  /* On centre ou on place où on veut */
+  text-align: left; /* ou center, selon ton choix */
+  margin: 1.5rem 2rem; /* écarte du bord */
+  color: #ff66cc; /* rose vif, par ex. */
+}
+
+.follow-us p {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.social-icons {
+  display: flex;
+  gap: 1rem; /* écart horizontal entre les icônes */
+  align-items: center; /* aligne verticalement si la taille des icônes diffère */
+}
+
+.social-icons a {
+  color: #ff66cc; /* même couleur que le texte, ou autre */
+  font-size: 1.5rem; /* agrandit l'icône Font Awesome */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #ff3399; /* nuance plus foncée ou claire */
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.social-links a {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #d60000;
+  color: white;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.social-links a:hover {
+  background-color: #990000;
+}
+
+/* ------------------------------------------------
+      9. HERO & BACKGROUND ELEMENTS
+      ------------------------------------------------ */
+
+.hero-section {
+  width: 100%;
+  min-height: 100vh; /* ou la hauteur que tu veux */
+  background: url("assets/images/sapeurs.avif") center center / cover no-repeat;
+  position: relative;
+}
+
+.fond-sapeurs {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* occupe toute la largeur */
+  height: 100%; /* occupe toute la hauteur */
+  object-fit: cover; /* ajuste l'image pour remplir le conteneur */
+  z-index: -1; /* envoie l'image derrière le contenu */
+}
+
+.hero-section .content {
+  position: relative;
+  z-index: 1; /* assure que le contenu soit au-dessus de l'image */
+  /* place ton texte, images, etc. normalement */
+}
+
+/* Styles pour le logo en arrière-plan */
+.background-logo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+  background-color: #1a1a1a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-watermark {
+  max-width: 80%;
+  opacity: 0.1;
+  filter: grayscale(100%);
+}
+
+/* Styles pour le logo en filigrane */
+.site-watermark {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+  background-color: #1a1a1a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.site-watermark__logo {
+  max-width: 80%;
+  opacity: 0.1;
+  filter: grayscale(100%);
+}
+
+/* ------------------------------------------------
+      10. IMAGES & BANNERS
+      ------------------------------------------------ */
+
+.images-container {
+  margin: 2rem auto;
+  text-align: center; /* si tu veux centrer les images */
+}
+
+.images-container img {
+  display: block;
+  margin: 1rem auto; /* centre chaque image */
+  max-width: 600px; /* pour limiter la taille */
+}
+
+/* Styles pour la bannière principale */
+.site-banner {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.site-banner__image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  max-height: 400px;
+}
+
+/* ------------------------------------------------
+      11. CONTACT PAGE
+      ------------------------------------------------ */
+
+.contact-page {
+  position: relative;
+  z-index: 1;
+  padding: 2rem 0;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+/* Map Container */
+.map-container {
+  grid-column: 1 / -1;
+  height: 400px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  opacity: 0.8;
+}
+
+/* Contact Info */
+.contact-info {
+  padding: 2rem;
+  background-color: rgba(245, 245, 245, 0.95);
+  backdrop-filter: blur(5px);
+  border-radius: 8px;
+  opacity: 0.8;
+}
+
+.contact-info h1 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.contact-info h1 span {
+  color: #d60000;
+}
+
+.opening-hours {
+  margin-bottom: 1.5rem;
+}
+
+.opening-hours h2 {
+  color: #d60000;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.opening-hours p {
+  color: #d60000;
+  margin: 0;
+}
+
+.address {
+  margin-bottom: 1.5rem;
+  font-style: normal;
+}
+
+.contact-details a {
+  color: #d60000;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-details a:hover {
+  color: #990000;
+}
+
+/* Contact Form */
+.contact-form {
+  padding: 2rem;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(5px);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  opacity: 0.8;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #d60000;
+}
+
+.btn-submit {
+  background-color: #d60000;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+  background-color: #990000;
+}
+
+/* ------------------------------------------------
+      12. CONGRES PAGE
+      ------------------------------------------------ */
+
+.congres {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.congres__header {
+  background-color: #d60000;
+  color: white;
+  padding: 2rem;
+  text-align: center;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.congres__title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.congres__date,
+.congres__location {
+  font-size: 1.5rem;
+  margin: 0.5rem 0;
+}
+
+.congres__content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.congres__image-container {
+  width: 100%;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.congres__image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* ------------------------------------------------
+      13. ADHESION PAGE
+      ------------------------------------------------ */
+
+.adhesion {
+  padding: 2rem 0;
+  position: relative;
+  z-index: 1;
+  background-color: #1a1a1a;
+  min-height: 100vh;
+}
+
+.adhesion__title {
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+
+.adhesion__subtitle {
+  text-align: center;
+  color: #999;
+  font-size: 1.8rem;
+  margin-bottom: 3rem;
+  text-decoration: underline;
+}
+
+.documents-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.document-section {
+  background-color: #f5f5f5;
+  padding: 2rem;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.document-section__title {
+  color: #d60000;
+  font-size: 1.4rem;
+  margin-bottom: 2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.document-section__files {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.document-group {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.document-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 120px;
+}
+
+.document-icon {
+  font-size: 3rem;
+}
+
+.document-icon--word {
+  color: #2b579a;
+}
+
+.document-icon--excel {
+  color: #217346;
+}
+
+.document-item span {
+  font-size: 0.9rem;
+  color: #333;
+  text-align: center;
+  max-width: 150px;
+}
+
+/* ------------------------------------------------
+      14. MEDIA QUERIES (global)
+      ------------------------------------------------ */
+@media (max-width: 768px) {
+  /* Two columns => stack */
+  .two-columns {
+    flex-direction: column;
+  }
+
+  .col-left,
+  .col-right {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  /* Contact banner => stack */
+  .contact-banner {
+    flex-direction: column;
+  }
+
+  .contact-block {
+    width: 100%;
+  }
+
+  /* Footer responsive */
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  /* DPS responsive */
+  .dps-title {
+    font-size: 2rem;
+  }
+
+  .dps-text {
+    font-size: 1.25rem;
+  }
+
+  .dps-contact {
+    padding: 1.5rem;
+    width: 90%;
+  }
+
+  .dps-email,
+  .dps-phone a {
+    font-size: 1rem;
+  }
+
+  /* Contact page responsive */
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .map-container {
+    height: 300px;
+  }
+
+  .logo-watermark {
+    max-width: 95%;
+  }
+
+  /* Banner responsive */
+  .site-banner__image {
+    max-height: 300px;
+  }
+
+  /* Congres responsive */
+  .congres__content {
+    grid-template-columns: 1fr;
+  }
+
+  .congres__header {
+    padding: 1.5rem;
+  }
+
+  .congres__title {
+    font-size: 2rem;
+  }
+
+  .congres__date,
+  .congres__location {
+    font-size: 1.2rem;
+  }
+
+  /* Adhesion responsive */
+  .documents-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .document-section {
+    padding: 1rem;
+  }
+
+  .document-section__title {
+    font-size: 1.5rem;
+  }
+
+  .document-item span {
+    font-size: 0.8rem;
+  }
+}
+
+/* Mise à jour du menu mobile */
+@media (max-width: 768px) {
+  .navbar-menu {
+    position: absolute;
+    top: 100%; /* Position juste sous le header */
+    left: 0;
+    width: 100%;
+    background-color: #1a1a1a;
+    padding: 1rem 0;
+    z-index: 1000; /* Z-index élevé pour le menu */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .navbar-menu.active {
+    display: block;
+  }
+
+  /* Assurer que le menu est au-dessus de tout */
+  .navbar-menu li {
+    position: relative;
+    z-index: 1001;
+  }
+}
+
+@media (min-width: 1200px) {
+  .site-banner__image {
+    max-height: 500px;
+  }
+}
+
+/* Media Queries */
+@media (max-width: 992px) {
+  .documents-grid {
+    grid-template-columns: 1fr;
+    max-width: 600px;
+  }
+
+  .document-section {
+    padding: 1.5rem;
+  }
+}
+
+/* ------------------------------------------------
+      15. FORMATIONS PAGE
+      ------------------------------------------------ */
+
+.formations {
+  padding: 2rem 0;
+  position: relative;
+  z-index: 1;
+}
+
+.formations__title {
+  background-color: #d60000;
+  color: #fff;
+  text-align: center;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.formations__intro {
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 1.5rem;
+  border-radius: 8px;
+  color: #333;
+}
+
+.formations__intro p {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.formations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.formation-card {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.formation-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.formation-card__header {
+  background-color: #d60000;
+  color: white;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.formation-card__title {
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+.formation-card__duration {
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+.formation-card__content {
+  padding: 1.5rem;
+  flex-grow: 1;
+  color: #333;
+}
+
+.formation-card__description {
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.formation-card__details {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1.5rem;
+}
+
+.formation-card__details li {
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+}
+
+.formation-card__details li i {
+  color: #d60000;
+  margin-right: 0.5rem;
+}
+
+.formation-card__price {
+  font-size: 1.1rem;
+  text-align: center;
+  margin-top: 1.5rem;
+  padding: 0.8rem;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+}
+
+.formation-card__price span {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #d60000;
+}
+
+.formation-card__footer {
+  padding: 1.5rem;
+  text-align: center;
+  background-color: #f5f5f5;
+}
+
+.btn-formation {
+  display: inline-block;
+  background-color: #d60000;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.btn-formation:hover {
+  background-color: #990000;
+}
+
+.formations-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.formations-info__block {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: center;
+  color: #333;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.formations-info__block i {
+  color: #d60000;
+  margin-bottom: 1rem;
+}
+
+.formations-info__block h3 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.formations-info__block p {
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.btn-calendar {
+  display: inline-block;
+  background-color: #333;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-calendar:hover {
+  background-color: #555;
+}
+
+.formations-contact {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 2rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.formations-contact__title {
+  color: #d60000;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+}
+
+.formations-form {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.formations-form .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.formations-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #333;
+  font-weight: bold;
+}
+
+.formations-form input,
+.formations-form select,
+.formations-form textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.formations-form input:focus,
+.formations-form select:focus,
+.formations-form textarea:focus {
+  outline: none;
+  border-color: #d60000;
+}
+
+/* Media Queries pour la page Formations */
+@media (max-width: 768px) {
+  .formations__title {
+    font-size: 2rem;
+    padding: 1rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .formations-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .formations-info {
+    grid-template-columns: 1fr;
+  }
+
+  .formation-card__header {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+
+  .formation-card__duration {
+    align-self: flex-start;
+  }
+}
+
+.current-date-display {
+  text-align: center;
+  color: #333;
+  font-style: italic;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px dashed #eee;
+}
+
+#current-date {
+  font-weight: bold;
+  color: #d60000;
+}
+
+/* ------------------------------------------------
+      16. MODAL CALENDRIER (STYLE WINDOWS)
+      ------------------------------------------------ */
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  overflow-y: auto;
+  padding: 2rem 0;
+}
+
+.modal-content {
+  background-color: #f5f5f5;
+  margin: 0 auto;
+  padding: 1.5rem;
+  border-radius: 4px;
+  max-width: 1000px;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  animation: modalFadeIn 0.3s ease-out;
+  border: 1px solid #ddd;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 0.8rem;
+  right: 1rem;
+  font-size: 1.8rem;
+  color: #777;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  z-index: 2;
+}
+
+.modal-close:hover {
+  color: #d60000;
+}
+
+.modal-title {
+  background-color: #d60000;
+  color: white;
+  margin: -1.5rem -1.5rem 1.5rem -1.5rem;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.calendar-header {
+  margin-bottom: 1.5rem;
+}
+
+.current-date-display {
+  text-align: center;
+  color: #333;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
+
+#current-date {
+  font-weight: bold;
+  color: #d60000;
+}
+
+.calendar-filters {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  background-color: #fff;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.filter-group label {
+  font-weight: bold;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.filter-group select {
+  padding: 0.4rem;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background-color: #fff;
+  font-size: 0.9rem;
+}
+
+/* Grille de calendrier style Windows */
+.calendar-grid {
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.calendar-grid-header {
+  display: grid;
+  grid-template-columns: 120px 2fr 1fr 2fr 1fr 100px;
+  background-color: #e9e9e9;
+  border-bottom: 1px solid #ddd;
+  font-weight: bold;
+}
+
+.grid-cell {
+  padding: 0.8rem;
+  border-right: 1px solid #ddd;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+}
+
+.grid-cell:last-child {
+  border-right: none;
+}
+
+.calendar-grid-body {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.calendar-grid-row {
+  display: grid;
+  grid-template-columns: 120px 2fr 1fr 2fr 1fr 100px;
+  border-bottom: 1px solid #ddd;
+  transition: background-color 0.2s ease;
+}
+
+.calendar-grid-row:last-child {
+  border-bottom: none;
+}
+
+.calendar-grid-row:hover {
+  background-color: #f0f0f0;
+}
+
+.date-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #d60000;
+  color: white;
+  border-radius: 3px;
+  padding: 0.5rem;
+  width: 80px;
+  height: 80px;
+  text-align: center;
+}
+
+.date-day {
+  font-size: 1.8rem;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.date-month {
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
+}
+
+.date-year {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+.grid-cell-formation {
+  font-weight: bold;
+  color: #333;
+}
+
+.grid-cell-horaire,
+.grid-cell-lieu {
+  color: #555;
+  font-size: 0.85rem;
+}
+
+.status-badge {
+  padding: 0.3rem 0.6rem;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.status-available {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #c8e6c9;
+}
+
+.status-limited {
+  background-color: #fff8e1;
+  color: #f57f17;
+  border: 1px solid #ffecb3;
+}
+
+.status-full {
+  background-color: #ffebee;
+  color: #c62828;
+  border: 1px solid #ffcdd2;
+}
+
+.btn-session {
+  padding: 0.5rem 0.8rem;
+  background-color: #d60000;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.85rem;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.btn-session:hover {
+  background-color: #b50000;
+}
+
+.btn-session.disabled {
+  background-color: #999;
+  cursor: not-allowed;
+}
+
+/* Media Queries pour la modal */
+@media (max-width: 992px) {
+  .calendar-grid-header,
+  .calendar-grid-row {
+    grid-template-columns: 100px 2fr 1fr 1.5fr 1fr 90px;
+  }
+
+  .date-box {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+@media (max-width: 768px) {
+  .modal-content {
+    width: 95%;
+    padding: 1rem;
+  }
+
+  .modal-title {
+    margin: -1rem -1rem 1rem -1rem;
+    font-size: 1.3rem;
+  }
+
+  .calendar-filters {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .calendar-grid-header {
+    display: none; /* Cacher l'en-tête sur mobile */
+  }
+
+  .calendar-grid-row {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .grid-cell {
+    border-right: none;
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed #eee;
+  }
+
+  .grid-cell:last-child {
+    border-bottom: none;
+  }
+
+  .grid-cell-date {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .date-box {
+    width: 80px;
+    height: 80px;
+  }
+
+  .grid-cell-formation {
+    font-size: 1.1rem;
+    text-align: center;
+  }
+
+  .grid-cell-places {
+    display: flex;
+    justify-content: center;
+    margin: 0.5rem 0;
+  }
+
+  .grid-cell-action {
+    display: flex;
+    justify-content: center;
+  }
+
+  .btn-session {
+    width: 100%;
+    padding: 0.8rem;
+  }
+}
+
+/* Styles du bouton de basculement */
+.theme-toggle-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  color: #ffffff !important; /* Couleur du texte/icône */
+}
+
+.theme-toggle-btn:hover {
+  transform: scale(1.1);
+  background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+body.dark-mode .theme-toggle-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Positionnement du bouton dans la navigation */
+.theme-toggle-item {
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+}
+
+@media (max-width: 768px) {
+  .theme-toggle-item {
+    margin: 0.5rem 0;
+  }
+
+  .theme-toggle-btn {
+    margin-left: 0;
+  }
+}
+
+/* Styles de base pour le mode clair */
+body {
+  background-color: #ffffff;
+  color: #333333;
+}
+
+/* Styles du mode sombre */
+body.dark-mode {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+/* Navigation en mode clair */
+nav {
+  background-color: #ffffff;
+}
+
+nav a {
+  color: #333333;
+}
+
+/* Navigation en mode sombre */
+body.dark-mode nav {
+  background-color: #2d2d2d;
+}
+
+body.dark-mode nav a {
+  color: #ffffff;
+}
+
+/* Tableaux en mode clair */
+table {
+  background-color: #ffffff;
+  color: #333333;
+  border-color: #e0e0e0;
+}
+
+/* Tableaux en mode sombre */
+body.dark-mode table {
+  background-color: #2d2d2d;
+  color: #ffffff;
+  border-color: #404040;
+}
+
+/* Formulaires en mode clair */
+input,
+select,
+textarea {
+  background-color: #ffffff;
+  color: #333333;
+  border-color: #e0e0e0;
+}
+
+/* Formulaires en mode sombre */
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode textarea {
+  background-color: #333333;
+  color: #ffffff;
+  border-color: #404040;
+}
+
+/* Boutons en mode clair */
+button,
+.btn {
+  background-color: #f0f0f0;
+  color: #333333;
+}
+
+button:hover,
+.btn:hover {
+  background-color: #e0e0e0;
+}
+
+/* Boutons en mode sombre */
+body.dark-mode button,
+body.dark-mode .btn {
+  background-color: #404040;
+  color: #ffffff;
+}
+
+body.dark-mode button:hover,
+body.dark-mode .btn:hover {
+  background-color: #505050;
+}
+
+/* Cards et conteneurs en mode clair */
+.card,
+.container {
+  background-color: #ffffff;
+  border-color: #e0e0e0;
+}
+
+/* Cards et conteneurs en mode sombre */
+body.dark-mode .card,
+body.dark-mode .container {
+  background-color: #2d2d2d;
+  border-color: #404040;
+}
+
+/* Liens en mode clair */
+a {
+  color: #0066cc;
+}
+
+a:hover {
+  color: #004499;
+}
+
+/* Liens en mode sombre */
+body.dark-mode a {
+  color: #66b3ff;
+}
+
+body.dark-mode a:hover {
+  color: #99ccff;
+}
+
+/* Footer en mode clair */
+.footer {
+  background-color: #f5f5f5;
+  color: #666666;
+}
+
+/* Footer en mode sombre */
+body.dark-mode .footer {
+  background-color: #222222;
+  color: #cccccc;
+}
+
+/* Burger menu en mode clair */
+.burger span {
+  background-color: #333333;
+}
+
+/* Burger menu en mode sombre */
+body.dark-mode .burger span {
+  background-color: #ffffff;
+}
+
+/* Modals en mode clair */
+.modal-content {
+  background-color: #ffffff;
+  border-color: #e0e0e0;
+}
+
+.modal-close {
+  color: #333333;
+}
+
+/* Modals en mode sombre */
+body.dark-mode .modal-content {
+  background-color: #2d2d2d;
+  border-color: #404040;
+}
+
+body.dark-mode .modal-close {
+  color: #ffffff;
+}
+
+/* Suppression des encadrés étranges */
+body.dark-mode * {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* Transition douce pour tous les éléments lors du changement de thème */
+body,
+nav,
+input,
+select,
+textarea,
+button,
+.card,
+.container,
+.footer,
+.modal-content {
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* Styles pour la barre de navigation - toujours sombre */
+.navbar,
+.header,
+nav {
+  background-color: #1a1a1a !important;
+  color: #ffffff !important;
+}
+
+.navbar a,
+.header a,
+nav a {
+  color: #ff0000 !important; /* Texte rouge comme avant */
+}
+
+.navbar a:hover,
+.header a:hover,
+nav a:hover {
+  color: #ffffff !important; /* Texte blanc au survol */
+}
+
+.navbar .active a,
+.header .active a,
+nav .active a,
+.navbar li.active,
+.header li.active,
+nav li.active {
+  color: #ffffff !important; /* Texte blanc pour l'élément actif */
+  background-color: #ff0000 !important; /* Fond rouge pour l'élément actif */
+  border-radius: 4px !important; /* Coins arrondis */
+  border-bottom: none !important; /* Suppression du soulignement */
+}
+
+/* Styles pour le footer - toujours sombre */
+.footer {
+  background-color: #1a1a1a !important; /* Même couleur que la barre de navigation */
+  color: #cccccc !important;
+}
+
+.footer a {
+  color: #ffffff !important;
+}
+
+.footer a:hover {
+  color: #ff0000 !important; /* Rouge au survol */
+}
